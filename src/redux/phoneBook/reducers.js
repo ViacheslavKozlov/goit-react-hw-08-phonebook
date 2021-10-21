@@ -1,29 +1,46 @@
-import { combineReducers, createReducer } from "@reduxjs/toolkit";
-import { addContactSuccess, addContactError, getContactsSuccess, delContactSuccess, changeFilter } from "./actions";
+import { combineReducers } from "redux";
+import { createReducer } from "@reduxjs/toolkit";
+// import { addContactSuccess, addContactError, getContactsSuccess, delContactSuccess, changeFilter } from "./actions";
+import contactsActions from "./actions";
+// import { authOperations } from "../authorization";
 
-const contactsReducer = createReducer([], {
-  [getContactsSuccess]: (_, { payload }) => payload,
-  [addContactSuccess]: (state, { payload }) => [...state, payload],
-  [addContactError]: addContactErrFunc,
-  [delContactSuccess]: delContactFunc
+// console.log(authOperations);
+
+const contacts = createReducer([], {
+  [contactsActions.getContactsSuccess]: (_, { payload }) => payload,
+  [contactsActions.addContactSuccess]: (state, { payload }) => [...state, payload],
+  [contactsActions.addContactError]: addContactErrFunc,
+  [contactsActions.delContactSuccess]: delContactFunc
 });
 
-const filterReducer = createReducer("", {
-  [changeFilter]: (_, { payload }) => payload
+const filter = createReducer("", {
+  [contactsActions.changeFilter]: (_, { payload }) => payload
 });
 
-const rootReducer = combineReducers({
-  contacts: contactsReducer,
-  filter: filterReducer
+const loading = createReducer(false, {
+  [contactsActions.getContactsRequest]: () => true,
+  [contactsActions.getContactsSuccess]: () => false,
+  [contactsActions.getContactsError]: () => false,
+  [contactsActions.addContactRequest]: () => true,
+  [contactsActions.addContactSuccess]: () => false,
+  [contactsActions.addContactError]: () => false,
+  [contactsActions.delContactRequest]: () => true,
+  [contactsActions.delContactSuccess]: () => false,
+  [contactsActions.delContactError]: () => false
 });
 
-// function addContactFunc(state, { payload }) {
-//   if (state.some(contact => contact.name.toLocaleLowerCase() === payload.name.toLocaleLowerCase())) {
-//     alert(`${payload.name} is alredy exist`);
-//     return state;
-//   }
-//   return [...state, payload];
-// }
+const error = createReducer(null, {
+  [contactsActions.getContactsError]: (_, { payload }) => payload,
+  [contactsActions.addContactError]: (_, { payload }) => payload,
+  [contactsActions.delContactError]: (_, { payload }) => payload
+});
+
+// const rootReducer = combineReducers({
+//   contacts: contactsReducer,
+//   filter: filterReducer,
+//   loading: loadingReducer,
+//   error: errorReducer
+// });
 
 function addContactErrFunc(_, { payload }) {
   alert(payload);
@@ -33,4 +50,9 @@ function delContactFunc(state, { payload }) {
   return state.filter(contact => contact.id !== payload);
 }
 
-export default rootReducer;
+export default combineReducers({
+  contacts,
+  filter,
+  loading,
+  error
+});

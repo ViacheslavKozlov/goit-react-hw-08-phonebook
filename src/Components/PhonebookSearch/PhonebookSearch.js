@@ -1,14 +1,15 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../../redux/phoneBook/actions";
+import { contactsActions, contactsSelectors } from "../../redux/phoneBook";
 import style from "./PhonebookSearch.module.css";
 
 const PhonebookSearch = () => {
-  const value = useSelector(state => state.contacts.filter);
+  // const value = useSelector(state => state.contacts.filter);
+  const value = useSelector(contactsSelectors.getFilter);
   const dispatch = useDispatch();
 
   const onChange = evt => {
-    dispatch(actions.changeFilter(evt.currentTarget.value));
+    dispatch(contactsActions.changeFilter(evt.currentTarget.value));
   };
 
   return (

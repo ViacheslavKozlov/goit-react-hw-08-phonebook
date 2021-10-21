@@ -7,7 +7,7 @@ const PhonebookEmptyListHeadline = ({ title }) => {
 };
 
 PhonebookEmptyListHeadline.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string
 };
 
 export default PhonebookEmptyListHeadline;

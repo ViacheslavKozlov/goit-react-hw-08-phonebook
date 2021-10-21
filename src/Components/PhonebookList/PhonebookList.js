@@ -1,14 +1,23 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteContact } from "../../redux/phoneBook/operations";
-import { getVisibleContacts } from "../../redux/phoneBook/selectors";
+import { contactsOperations, contactsSelectors } from "../../redux/phoneBook";
 import style from "./PhonebookList.module.css";
 
 export default function PhonebookList() {
   const dispatch = useDispatch();
 
-  const filteredContacts = useSelector(getVisibleContacts);
+  useEffect(
+    () => {
+      dispatch(contactsOperations.getContact());
+    },
+    [dispatch]
+  );
 
-  const deleteBtnHandler = contact => dispatch(deleteContact(contact.id));
+  const filteredContacts = useSelector(contactsSelectors.getVisibleContacts);
+
+  const deleteBtnHandler = id => {
+    dispatch(contactsOperations.deleteContact(id));
+  };
 
   return (
     <>
@@ -18,7 +27,7 @@ export default function PhonebookList() {
             <span className={style.listItemdData}>
               {contact.name}: <a href="tel:+{contact.number}">{contact.number}</a>
             </span>
-            <button className={style.listItemBtn} type="button" onClick={() => deleteBtnHandler(contact)}>
+            <button className={style.listItemBtn} type="button" onClick={() => deleteBtnHandler(contact.id)}>
               delete
             </button>
           </li>

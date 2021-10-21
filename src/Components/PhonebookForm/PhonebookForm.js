@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/phoneBook/operations";
+// import { addContact } from "../../redux/phoneBook/operations";
+import { contactsOperations } from "../../redux/phoneBook";
 import style from "./PhonebookForm.module.css";
 
 export default function PhonebookForm() {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const dispatch = useDispatch();
-  const onSubmit = contact => dispatch(addContact(contact));
+  const onSubmit = contact => dispatch(contactsOperations.addContact(contact));
 
   const handleChange = evt => {
     const { name, value } = evt.target;

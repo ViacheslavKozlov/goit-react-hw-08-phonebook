@@ -1,15 +1,30 @@
 import { createAction } from "@reduxjs/toolkit";
 
-export const getContactsRequest = createAction("contacts/getContactsRequest");
-export const getContactsSuccess = createAction("contacts/getContactsSuccess");
-export const getContactsError = createAction("contacts/getContactsError");
+const getContactsRequest = createAction("contacts/getContactsRequest");
+const getContactsSuccess = createAction("contacts/getContactsSuccess");
+const getContactsError = createAction("contacts/getContactsError");
 
-export const addContactRequest = createAction("contacts/addContactRequest");
-export const addContactSuccess = createAction("contacts/addContactSuccess");
-export const addContactError = createAction("contacts/addContactError");
+const addContactRequest = createAction("contacts/addContactRequest");
+const addContactSuccess = createAction("contacts/addContactSuccess");
+const addContactError = createAction("contacts/addContactError");
 
-export const delContactRequest = createAction("contacts/delContactRequest");
-export const delContactSuccess = createAction("contacts/delContactSuccess");
-export const delContactError = createAction("contacts/delContactError");
+const delContactRequest = createAction("contacts/delContactRequest");
+const delContactSuccess = createAction("contacts/delContactSuccess");
+const delContactError = createAction("contacts/delContactError");
 
-export const changeFilter = createAction("contacts/filter");
+const changeFilter = createAction("contacts/filter");
+
+const contactsActions = {
+  getContactsRequest,
+  getContactsSuccess,
+  getContactsError,
+  addContactRequest,
+  addContactSuccess,
+  addContactError,
+  delContactRequest,
+  delContactSuccess,
+  delContactError,
+  changeFilter
+};
+
+export default contactsActions;

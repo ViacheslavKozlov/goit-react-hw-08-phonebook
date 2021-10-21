@@ -1,48 +1,45 @@
 import axios from "axios";
-import {
-  getContactsRequest,
-  getContactsSuccess,
-  getContactsError,
-  addContactRequest,
-  addContactSuccess,
-  addContactError,
-  delContactRequest,
-  delContactSuccess,
-  delContactError
-} from "./actions";
+import contactsActions from "./actions";
 
-axios.defaults.baseURL = "http://localhost:3030";
+// axios.defaults.baseURL = "http://connections-api.herokuapp.com";
 
-export const addContact = ({ name, number }) => (dispatch, getState) => {
+const addContact = ({ name, number }) => (dispatch, getState) => {
   const contact = { name, number };
-  // console.log(store);
 
   const contacts = getState().contacts.contacts;
+  // console.log(contacts);
 
   if (contacts?.some(contact => contact.name === name)) {
-    return dispatch(addContactError(`${name} is exist`));
+    return dispatch(contactsActions.addContactError(`${name} is exist`));
   }
-  dispatch(addContactRequest());
+  dispatch(contactsActions.addContactRequest());
 
   axios
     .post("/contacts", contact)
-    .then(({ data }) => dispatch(addContactSuccess(data)))
-    .catch(error => dispatch(addContactError(error)));
+    .then(({ data }) => dispatch(contactsActions.addContactSuccess(data)))
+    .catch(error => dispatch(contactsActions.addContactError(error)));
 };
 
-export const deleteContact = id => dispatch => {
-  dispatch(delContactRequest());
+const deleteContact = contactId => dispatch => {
+  dispatch(contactsActions.delContactRequest());
 
   axios
-    .delete(`/contacts/${id}`)
-    .then(() => dispatch(delContactSuccess(id)))
-    .catch(error => dispatch(delContactError(error)));
+    .delete(`/contacts/${contactId}`)
+    .then(() => dispatch(contactsActions.delContactSuccess(contactId)))
+    .catch(error => dispatch(contactsActions.delContactError(error)));
 };
 
-export const getContact = () => dispatch => {
-  dispatch(getContactsRequest());
+const getContact = () => dispatch => {
+  dispatch(contactsActions.getContactsRequest());
   axios
     .get("/contacts")
-    .then(({ data }) => dispatch(getContactsSuccess(data)))
-    .catch(error => dispatch(getContactsError(error)));
+    .then(({ data }) => dispatch(contactsActions.getContactsSuccess(data)))
+    .catch(error => dispatch(contactsActions.getContactsError(error)));
 };
+
+// const clearContactList = () => dispatch=> {
+
+// }
+
+const contactsOperations = { getContact, addContact, deleteContact };
+export default contactsOperations;
