@@ -28,7 +28,7 @@ export default function RegPage() {
   const handleSubmit = evt => {
     evt.preventDefault();
     dispatch(authOperations.register({ name, email, password }));
-    // resetForm();
+    resetForm();
   };
 
   return (

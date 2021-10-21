@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { contactsOperations, contactsSelectors } from "../../redux/phoneBook";
 import style from "./PhonebookList.module.css";
