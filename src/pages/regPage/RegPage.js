@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { authOperations } from "../../redux/authorization/index";
+import style from "./RegPage.module.css";
 
 export default function RegPage() {
   const [name, setName] = useState("");
@@ -32,25 +33,27 @@ export default function RegPage() {
   };
 
   return (
-    <div>
-      <h1>Registration form</h1>
-      <form onSubmit={handleSubmit} autoComplete="off">
-        <label>
+    <div className={style.container}>
+      <h1 className={style.headline}>Registration form</h1>
+      <form className={style.form} onSubmit={handleSubmit} autoComplete="off">
+        <label className={style.label}>
           Name
-          <input type="text" name="name" value={name} onChange={handleChange} />
+          <input className={style.input} type="text" name="name" value={name} onChange={handleChange} />
         </label>
 
-        <label>
+        <label className={style.label}>
           Email
-          <input type="email" name="email" value={email} onChange={handleChange} />
+          <input className={style.input} type="email" name="email" value={email} onChange={handleChange} />
         </label>
 
-        <label>
+        <label className={style.label}>
           Password
-          <input type="password" name="password" value={password} onChange={handleChange} />
+          <input className={style.input} type="password" name="password" value={password} onChange={handleChange} />
         </label>
 
-        <button type="submit">Sign up</button>
+        <button className={style.btn} type="submit">
+          Sign up
+        </button>
       </form>
     </div>
   );

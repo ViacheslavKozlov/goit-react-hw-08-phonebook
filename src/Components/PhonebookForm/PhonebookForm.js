@@ -70,7 +70,7 @@ export default function PhonebookForm() {
         </label>
       </div>
       <button className={style.formBtn} type="submit">
-        Add contact to phonebook
+        Add contact
       </button>
     </form>
   );

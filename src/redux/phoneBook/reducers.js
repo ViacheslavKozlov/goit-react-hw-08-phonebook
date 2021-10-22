@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
 // import { addContactSuccess, addContactError, getContactsSuccess, delContactSuccess, changeFilter } from "./actions";
 import contactsActions from "./actions";
-// import { authOperations } from "../authorization";
+import { authOperations } from "../authorization";
 
 // console.log(authOperations);
 
@@ -10,7 +10,8 @@ const contacts = createReducer([], {
   [contactsActions.getContactsSuccess]: (_, { payload }) => payload,
   [contactsActions.addContactSuccess]: (state, { payload }) => [...state, payload],
   [contactsActions.addContactError]: addContactErrFunc,
-  [contactsActions.delContactSuccess]: delContactFunc
+  [contactsActions.delContactSuccess]: delContactFunc,
+  [authOperations.logOut.fulfilled]: () => []
 });
 
 const filter = createReducer("", {

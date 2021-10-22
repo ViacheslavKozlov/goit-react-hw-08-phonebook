@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+.name {
+  color: black;
+}
+
+.logOutBtn {
+  margin-left: 5px;
+  height: 20px;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+
+  cursor: pointer;
+}
+
+.logOutBtn:hover {
+  color: #ffffff;
+  text-align: center;
+  background: #ff6b08;
+}

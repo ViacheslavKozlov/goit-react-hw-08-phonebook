@@ -33,3 +33,10 @@ a {
   outline: none;
   border-radius: 3px;
 }
+.listItemBtn:hover {
+  cursor: pointer;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  background: #ff6b08;
+}
