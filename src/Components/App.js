@@ -2,8 +2,8 @@
 import { lazy, Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authSelectors, authOperations } from "../redux/authorization";
-import PublicRout from "../pages/PublicRoute";
-import PrivateRout from "../pages/PrivateRoute";
+import PublicRout from "../Components/routes/PublicRoute";
+import PrivateRout from "../Components/routes/PrivateRoute";
 import AppBar from "./AppBar/AppBar";
 import { Switch } from "react-router";
 
