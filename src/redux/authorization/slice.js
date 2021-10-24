@@ -38,6 +38,10 @@ const authSlice = createSlice({
       state.isRefreshingUser = false;
       state.error = null;
     },
+    [authOperations.logOut.rejected](state, action) {
+      state.error = action.payload;
+    },
+
     [authOperations.refreshCurrentUser.pending](state) {
       state.isRefreshingUser = true;
     },
