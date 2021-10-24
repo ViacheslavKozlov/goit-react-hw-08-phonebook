@@ -1,10 +1,7 @@
 import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
-// import { addContactSuccess, addContactError, getContactsSuccess, delContactSuccess, changeFilter } from "./actions";
 import contactsActions from "./actions";
 import { authOperations } from "../authorization";
-
-// console.log(authOperations);
 
 const contacts = createReducer([], {
   [contactsActions.getContactsSuccess]: (_, { payload }) => payload,
@@ -33,15 +30,11 @@ const loading = createReducer(false, {
 const error = createReducer(null, {
   [contactsActions.getContactsError]: (_, { payload }) => payload,
   [contactsActions.addContactError]: (_, { payload }) => payload,
-  [contactsActions.delContactError]: (_, { payload }) => payload
+  [contactsActions.delContactError]: (_, { payload }) => payload,
+  [contactsActions.getContactsSuccess]: () => null,
+  [contactsActions.addContactSuccess]: () => null,
+  [contactsActions.delContactSuccess]: () => null
 });
-
-// const rootReducer = combineReducers({
-//   contacts: contactsReducer,
-//   filter: filterReducer,
-//   loading: loadingReducer,
-//   error: errorReducer
-// });
 
 function addContactErrFunc(_, { payload }) {
   alert(payload);

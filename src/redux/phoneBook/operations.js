@@ -1,13 +1,10 @@
 import axios from "axios";
 import contactsActions from "./actions";
 
-// axios.defaults.baseURL = "http://connections-api.herokuapp.com";
-
 const addContact = ({ name, number }) => (dispatch, getState) => {
   const contact = { name, number };
 
   const contacts = getState().contacts.contacts;
-  // console.log(contacts);
 
   if (contacts?.some(contact => contact.name === name)) {
     return dispatch(contactsActions.addContactError(`${name} is exist`));
@@ -37,9 +34,6 @@ const getContact = () => dispatch => {
     .catch(error => dispatch(contactsActions.getContactsError(error)));
 };
 
-// const clearContactList = () => dispatch=> {
-
-// }
-
 const contactsOperations = { getContact, addContact, deleteContact };
+
 export default contactsOperations;

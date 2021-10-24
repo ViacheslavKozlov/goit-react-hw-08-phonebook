@@ -1,7 +1,3 @@
-.headline {
-  text-align: center;
-}
-
 form,
 label,
 input {
@@ -33,8 +29,8 @@ input {
   outline: none;
   border-radius: 2px;
   border: 1px solid grey;
-  /* background-color: lightgray; */
 }
+
 .btn {
   display: block;
   margin: 15px;
@@ -45,6 +41,7 @@ input {
   border: none;
   border-radius: 2px;
 }
+
 .btn:hover {
   cursor: pointer;
   border: none;

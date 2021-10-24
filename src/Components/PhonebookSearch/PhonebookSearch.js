@@ -4,7 +4,6 @@ import { contactsActions, contactsSelectors } from "../../redux/phoneBook";
 import style from "./PhonebookSearch.module.css";
 
 const PhonebookSearch = () => {
-  // const value = useSelector(state => state.contacts.filter);
   const value = useSelector(contactsSelectors.getFilter);
   const dispatch = useDispatch();
 

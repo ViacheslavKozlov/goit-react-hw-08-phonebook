@@ -10,12 +10,11 @@ import { Switch } from "react-router";
 const HomePage = lazy(() => import("../pages/homePage/HomePage") /*webpackChunkName: 'HomePage' */);
 const RegPage = lazy(() => import("../pages/regPage/RegPage") /*webpackChunkName: 'RegPage' */);
 const LoginPage = lazy(() => import("../pages/loginPage/LoginPage") /*webpackChunkName: 'LoginPage' */);
-const PhonebookPage = lazy(() => import("../pages/phonebookPage/PhonebookPage"));
+const PhonebookPage = lazy(() => import("../pages/phonebookPage/PhonebookPage") /*webpackChunkName: 'PhonebookPage' */);
 
 export default function App() {
   const dispatch = useDispatch();
   const isRefreshingUser = useSelector(authSelectors.getIsRefreshingUser);
-  // const contacts = useSelector(getContacts);
 
   useEffect(
     () => {
@@ -24,19 +23,18 @@ export default function App() {
     [dispatch]
   );
 
-  // useEffect(
-  //   () => {
-  //     dispatch(getContact());
-  //   },
-  //   [dispatch]
-  // );
-
   return (
     !isRefreshingUser && (
       <>
         <AppBar />
         <Switch>
-          <Suspense fallback={<span>... smth loading</span>}>
+          <Suspense
+            fallback={
+              <span style={{ display: "block", textAlign: "center", fontWeight: 500, fontSize: 20, marginTop: 100 }}>
+                ... smth loading
+              </span>
+            }
+          >
             <PublicRout exact path="/">
               <HomePage />
             </PublicRout>

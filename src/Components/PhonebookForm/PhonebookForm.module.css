@@ -3,6 +3,7 @@ label,
 input {
   display: block;
 }
+
 .formWarpper {
   display: flex;
   flex-direction: column;
@@ -28,7 +29,6 @@ input {
   outline: none;
   border-radius: 2px;
   border: 1px solid grey;
-  /* background-color: lightgray; */
 }
 
 .formBtn {
